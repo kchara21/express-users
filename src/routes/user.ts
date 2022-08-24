@@ -11,7 +11,7 @@ router.get('/',[checkJwt],UserController.getAll);
 router.get('/:id',[checkJwt],UserController.getById);
 
 //Create user 
-router.post('/',[checkJwt],UserController.newUser);
+router.post('/',UserController.newUser);
 
 //Edit user
 router.put('/:id',[checkJwt],UserController.editUser);

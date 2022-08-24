@@ -23,7 +23,7 @@ export default class UserController {
     const { id } = req.params;
     const userRepository = AppDataSource.getRepository(User);
     try {
-      const user = await userRepository.findOneOrFail(id);
+      const user = await userRepository.findOneOrFail({where:{id:parseInt(id)}});
       res.json(user);
     } catch (e) {
       res.status(404).json({ message: "Not Result" });
@@ -69,7 +69,7 @@ export default class UserController {
     const userRepository = AppDataSource.getRepository(User);
     let user;
     try {
-      user = await userRepository.findOneBy({ id });
+      user = await userRepository.findOneBy({id:parseInt(id)});
       user.email = email;
       user.nombre = nombre;
       user.celular = celular;
@@ -100,7 +100,7 @@ export default class UserController {
 
     let user: User;
     try {
-      user = await userRepository.findOneBy({ id });
+      user = await userRepository.findOneBy({id:parseInt(id)});
     } catch (e) {
       res.status(404).json({ message: "There is a problem with delete..." });
     }
